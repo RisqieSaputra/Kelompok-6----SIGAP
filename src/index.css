@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-neo-yellow: #FFC72C;
+  --color-neo-pink: #F48FB1;
+  --color-neo-blue: #90CAF9;
+  --color-neo-green: #A5D6A7;
+  --color-neo-violet: #C3B1E1;
+  --color-neo-cream: #FEF6C9;
+  --color-neo-orange: #FF7F50;
+  --color-neo-dark: #121212;
+}
+
+@layer base {
+  body {
+    background-color: #90CAF9;
+    font-family: var(--font-sans);
+    color: #121212;
+  }
+}
+
+/* Neubrutalist Design System Helper Classes */
+
+.neo-shadow {
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+.neo-shadow-lg {
+  box-shadow: 12px 12px 0px 0px #000000;
+}
+
+.neo-shadow-sm {
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+.neo-border {
+  border: 3px solid #000000;
+}
+
+.neo-border-sm {
+  border: 2px solid #000000;
+}
+
+.neo-card {
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0px 0px #000000;
+  border-radius: 16px;
+  background-color: #ffffff;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease-in-out;
+}
+
+.neo-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px 0px #000000;
+}
+
+.neo-btn {
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px 0px #000000;
+  border-radius: 12px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  user-select: none;
+}
+
+.neo-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.neo-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+.neo-btn-sm {
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px 0px #000000;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  user-select: none;
+}
+
+.neo-btn-sm:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px 0px #000000;
+}
+
+.neo-btn-sm:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px 0px #000000;
+}
+
+.neo-input {
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px 0px #000000;
+  border-radius: 12px;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  outline: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.neo-input:focus {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+  border-color: #000000;
+}
+
+/* Custom grid patterns */
+.neo-grid-bg {
+  background-color: #90CAF9;
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Scrollbar styling matching the retro neubrutalist vibe */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-left: 3px solid #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #FFD23F;
+  border: 3px solid #000000;
+  border-radius: 6px;
+  box-shadow: inset -2px -2px 0px #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #FF8E9E;
+}

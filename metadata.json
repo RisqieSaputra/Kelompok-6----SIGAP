@@ -1,0 +1,8 @@
+{
+  "name": "Remix: SIGAP - AI Pendamping Rakyat",
+  "description": "Teman, pembela, dan pemandu bagi rakyat Indonesia dalam menavigasi berkas, birokrasi, sengketa, dan kesehatan darurat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
