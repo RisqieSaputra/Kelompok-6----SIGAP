@@ -70,7 +70,8 @@ export default function SolusiSection() {
         method: "POST",
         headers: headersPayload,
         body: JSON.stringify({
-          message: `Saya adalah ${formData.nama} dari provinsi ${formData.provinsi}. Saya ingin menyampaikan aduan: ${formData.masalah}`
+          message: `Saya adalah ${formData.nama} (Kelompok: ${selectedGroup.group}) dari provinsi ${formData.provinsi}. Saya ingin menyampaikan aduan: ${formData.masalah}`,
+          topicId: selectedGroup.id
         })
       });
 
@@ -89,12 +90,130 @@ export default function SolusiSection() {
       // Generate standard offline fallback on failed connection or browser blocks
       const lower = formData.masalah.toLowerCase();
       let fallbackText = '';
-      if (lower.includes('phk') || lower.includes('pesangon') || lower.includes('kerja') || lower.includes('pecat') || lower.includes('gaji') || lower.includes('kontrak')) {
-        fallbackText = `✊ **Bela Hak Sipil - Korban PHK Sepihak Pabrik/Kantor (Analisis Cadangan):**\n\nHalo ${formData.nama}, kami turut prihatin dengan situasi PHK ini. Berdasarkan UU Cipta Kerja No 6 Tahun 2023, PHK sepihak tanpa SP bertahap melanggar hukum.\n\n**Analisis Singkat Masalah Anda:**\nPersoalan Anda di provinsi ${formData.provinsi} sedang kami lacak dalam jejaring bantuan hukum setempat. Berdasarkan aduan Anda: "${formData.masalah}", Anda berhak menuntut pesangon penuh yang sah!\n\n**Langkah Konkret Hari Ini:**\n1. Jangan menandatangani surat pengunduran diri sukarela (resignation) jika dipaksa HRD.\n2. Amankan semua bukti pendukung seperti slip gaji resmi, jam lembur, percakapan WhatsApp, kontrak, dan surat keputusan PHK.\n3. Ajukan perundingan Bipartit resmi kepada manajemen HRD di perusahaan Anda.`;
-      } else if (lower.includes('sakit') || lower.includes('dada') || lower.includes('sesak') || lower.includes('jantung')) {
-        fallbackText = `⚠️ **PANDUAN KESELAMATAN DARURAT MEDIS (Analisis Cadangan):**\n\nHalo ${formData.nama}, keluhan nyeri dada kiri atau dada sesak berisiko tinggi serangan jantung! Keselamatan Anda adalah prioritas nomor satu.\n\n**Aksi Penyelamatan Jiwa Seketika:**\n1. Segera hubungi Ambulans/Panggilan Darurat Medis 112 sekarang juga.\n2. Duduk santai bersandar 45 derajat (posisi setengah duduk). Jangan berdiri atau terus berjalan.\n3. Longgarkan kancing baju dan ikat pinggang agar napas lega. Jangan makan/minum apapun dulu!`;
+      
+      if (selectedGroup.id === 'target-buruh' || lower.includes('phk') || lower.includes('pesangon') || lower.includes('kerja') || lower.includes('pecat') || lower.includes('gaji') || lower.includes('kontrak')) {
+        fallbackText = `✊ **Bela Hak Sipil - Rekomendasi Advokasi Buruh Pabrik & Ketenagakerjaan buat ${formData.nama} (${formData.provinsi}):**
+
+Berdasarkan UU Cipta Kerja No 6 Tahun 2023 Pasal 156, PHK sepihak tanpa adanya SP (Surat Peringatan) bertahap dinyatakan melanggar hukum dan Anda berhak menolak pesangon yang tidak sesuai.
+
+**Analisis Masalah Ketenagakerjaan Anda:**
+1. **Perhitungan Pesangon Masa Kerja:** Sesuai ketentuan, masa kerja yang mapan (cth. 5 tahun) berhak atas pesangon 6 bulan upah standar + 2 bulan Uang Penghargaan Masa Kerja (UPMK) secara utuh.
+2. **Lembur Wajib:** Setiap jam lembur wajib dibayarkan sesuai dengan akumulasi pengali jam kerja resmi Disnaker.
+
+**Langkah Nyata Hari Ini:**
+1. **Tolak Pengunduran Diri Sukarela:** JANGAN pernah menandatangani draf surat resign sukarela dari HRD jika Anda dipaksa/diintimidasi.
+2. **Kumpulkan Bukti Valid:** Amankan slip gaji bulanan, ID Card, catatan jam lembur, percakapan WhatsApp koordinasi kerja, serta berkas kontrak kerja asli hari ini.
+3. **Minta Mediasi Bipartit:** Ajukan surat resmi kepada manajemen HRD untuk melakukan perundingan bipartit dalam batas waktu 7 hari. Lapor ke Dinas Tenaga Kerja (Disnaker) ${formData.provinsi} jika perusahaan tidak kooperatif.`;
+      
+      } else if (selectedGroup.id === 'target-tani' || lower.includes('sawah') || lower.includes('banjir') || lower.includes('caah') || lower.includes('tani') || lower.includes('gagal') || lower.includes('panen') || lower.includes('nelayan') || lower.includes('pupuk')) {
+        fallbackText = `🌾 **Pemberdayaan Petani & Nelayan - Solusi Klaim AUTP & Subsidi buat ${formData.nama} (${formData.provinsi}):**
+
+Negara menjamin kesejahteraan pangan. Jika sawah Anda mengalami puso akibat banjir/kekeringan atau menghadapi kendala perikanan, berikut hak perlindungan Anda:
+
+**Analisis Masalah Tani & Nelayan:**
+1. **Asuransi AUTP (Tani Padi):** Bagi sawah terdaftar AUTP, Anda berhak menerima ganti rugi resmi senilai **Rp 6.000.000,- per Hektar** dari pemerintah jika tingkat kerusakan di atas 75%.
+2. **Pupuk Subsidi:** Pembatasan pupuk diatasi dengan memastikan nama masuk dalam sistem e-RDKK Kelompok Tani setempat.
+3. **Solar Nelayan:** Gunakan Kartu KUSUKA (Kartu Pelaku Usaha Kelautan & Perikanan) agar mendapatkan harga solar subsidi murni di SPBU Nelayan (SPBUN) tanpa pungli tambahan.
+
+**Langkah Nyata Hari Ini:**
+1. **Dokumentasi Kerusakan:** Ambil foto/video detail kerusakan lahan sawah atau perahu/alat penangkapan ikan dari berbagai sisi untuk melengkapi berkas syarat klaim.
+2. **Hubungi PPL (Penyuluh Lapangan):** Temui Penyuluh Pertanian Lapangan (PPL) atau Penyuluh Perikanan daerah ${formData.provinsi} hari ini untuk verifikasi lapangan dan pembuatan Surat Pernyataan Lahan Puso/Gagal Panen dari RT/RW.
+3. **Bantuan Bibit Gratis:** Jika sawah belum berasuransi, ajukan bantuan darurat berupa bibit pengganti gratis dari cadangan kabupaten/provinsi.`;
+
+      } else if (selectedGroup.id === 'target-irt' || lower.includes('bansos') || lower.includes('arisan') || lower.includes('online') || lower.includes('bpj')) {
+        fallbackText = `👩‍🦰 **Perlindungan Sipil Ibu Rumah Tangga - Advokasi PKH, BPJS, & Penipuan Online buat ${formData.nama} (${formData.provinsi}):**
+
+Ibu Rumah Tangga memegang peran kemandirian keluarga. Berikut solusi taktis dari SIGAP untuk masalah yang Anda adukan:
+
+**Analisis Masalah Rumah Tangga:**
+1. **Bansos (PKH/BPNT) Terhambat:** Pastikan nama Anda terdaftar aktif di DTKS (Data Terpadu Kesejahteraan Sosial) Kemensos. Jika dinonaktifkan sepihak, kelurahan wajib mengusulkan ulang lewat musyawarah desa.
+2. **Re-aktivasi BPJS Kesehatan Mati:** Jika iuran mandiri menunggak, gunakan layanan cicilan ringan program **REHAB** di aplikasi Mobile JKN agar kartu segera aktif kembali dinten ini untuk berobat.
+3. **Penipuan Belanja/Arisan Online:** Berdasarkan aturan cyber polisi, transaksi penipuan wajib dilaporkan untuk membekukan rekening penipu.
+
+**Langkah Nyata Hari Ini:**
+1. **Cek DTKS Mandiri:** Unduh aplikasi resmi "Cek Bansos" dari HP kementerian sosial untuk mengecek status usulan bantuan sosial bansos keluarga Anda.
+2. **Laporkan Rekening Penipu:** Kunjungi portal kepolisian \`cekrekening.id\` untuk memasukkan nomor rekening penipu agar secara kolektif database dicap kriminal, lalu bawa bukti chat ke bank kagem memblokir saldo rekening mereka.
+3. **Fasilitas Medis Darurat:** IGD Puskesmas dan Rumah Sakit di ${formData.provinsi} wajib menerima rujukan lansia/anak sakit gawat darurat dinten ini tanpa memungut DP atau jaminan administratif awal!`;
+
+      } else if (selectedGroup.id === 'target-migran' || lower.includes('migran') || lower.includes('pmi') || lower.includes('luar negeri') || lower.includes('majikan') || lower.includes('paspor')) {
+        fallbackText = `🧳 **Advokasi Pekerja Migran Indonesia (PMI) - Perlindungan Kontrak & Anti-Eksploitasi buat ${formData.nama} (${formData.provinsi}):**
+
+Hak asasi Pekerja Migran dilindungi sepenuhnya oleh UU No 18 Tahun 2017 tentang Perlindungan Pekerja Migran Indonesia.
+
+**Analisis Masalah Migran Anda:**
+1. **Penahanan Dokumen Ilegal:** Paspor dan kontrak kerja adalah dokumen resmi milik negara yang dipegang oleh warga negara yang bersangkutan, majikan atau agen dilarang keras menahannya secara paksa.
+2. **Penipuan Biro/Agen Liar:** Pastikan selalu terdaftar melalui jalur resmi BP2MI (Badan Pelindungan Pekerja Migran Indonesia) kagem menjamin hak asuransi luar negeri.
+
+**Langkah Nyata Hari Ini:**
+1. **Gunakan Nomor Darurat KBRI:** Hubungi Call Center Perlindungan WNI KBRI di negara penempatan Anda segera lewat media sosial atau telepon darurat.
+2. **Laporkan Agen Liar ke BP2MI:** Kirimkan aduan resmi gratis ke Call Center BP2MI di nomor **0800-1000-50** (layanan gratis dalam negeri) atau WhatsApp resmi BP2MI dari luar negeri untuk menindak agen penyalur Anda.
+3. **Simpan Bukti Pembayaran:** Amankan bukti serah terima uang, kuitansi, nama agen perorangan, dan draf kontrak kerja secara aman di cloud/disimpan oleh keluarga Anda di ${formData.provinsi}.`;
+
+      } else if (selectedGroup.id === 'target-lansia' || lower.includes('lansia') || lower.includes('pensiun') || lower.includes('taspen') || lower.includes('tua')) {
+        fallbackText = `👵 **Layanan Perlindungan Mandiri Lansia - Fasilitas Medis & Pensiun Taspen buat ${formData.nama} (${formData.provinsi}):**
+
+Memasuki masa tua yang terhormat, kakek, nenek, dan para lansia dibebaskan dari antrean birokrasi yang melelahkan.
+
+**Analisis Layanan Lansia:**
+1. **Pencairan Dana Taspen/Pensiun:** Otentikasi wajah berkala tidak perlu dilakukan dengan datang langsung. Gunakan aplikasi Taspen Otentikasi di HP anak/saudara agar dana masuk rekening bank otomatis.
+2. **Layanan Kesehatan Tanpa Antre:** Lansia dengan penyakit penyerta (hipertensi, asam urat, gula) berhak diprioritaskan di ruang tunggu faskes tingkat satu serta mendapatkan program PRB (Program Rujuk Balik) agar mendapat obat bulanan gratis di apotek terdekat tanpa rujukan ulang.
+
+**Langkah Nyata Hari Ini:**
+1. **Daftarkan Kartu Lansia/Sembako:** Bawa fotokopi KTP Lansia ke Dinas Sosial ${formData.provinsi} atau kelurahan untuk diprioritaskan sebagai penerima bantuan asupan sembako atau asisten sosial lansia prasejahtera.
+2. **Aktifkan Fasilitas PRB:** Saat kontrol berikutnya di Puskesmas, minta berkas rujukan PRB (Program Rujuk Balik) BPJS Kesehatan agar pengambilan obat bulan berikutnya bisa dilayani langsung tanpa mengantre dokter spesialis rumah sakit.`;
+
+      } else if (selectedGroup.id === 'target-3t' || lower.includes('desa') || lower.includes('pelosok') || lower.includes('ular') || lower.includes('air') || lower.includes('pip')) {
+        fallbackText = `⛵ **Akses Administrasi Sipil & Mitigasi Penyelamatan Desa 3T buat ${formData.nama} (${formData.provinsi}):**
+
+Wilayah Terdepan, Terpencil, dan Tertinggal (3T) adalah beranda depan kedaulatan kita. Jarak administratif tidak boleh membatasi hak Anda.
+
+**Analisis Masalah Wilayah 3T:**
+1. **Pungli Dokumen Adminduk:** Pengurusan KTP, Kartu Keluarga (KK), Akta Kelahiran, dan Surat Waris Desa adalah **100% GRATIS** berdasarkan hukum kementerian dalam negeri.
+2. **Kejadian Medis Darurat (cth: Gigitan Ular):** Jangan diikat kencang karena merusak otot. Lakukan imobilisasi (balut bidai/papan kayu di sekeliling area gigitan agar tidak digerakkan sama sekali), lalu evakuasi menuju faskes Penyedia Serum Anti Bisa Ular (SABU) gratis terdekat.
+
+**Langkah Nyata Hari Ini:**
+1. **Klaim Adminduk Digital:** Jika balai Dukcapil jauh, mintalah sekretaris desa mendaftarkan KK/KTP Anda secara kolektif digital melalui aplikasi Identitas Kependudukan Digital (IKD).
+2. **Ajukan Dana Bantuan Siswa (PIP):** Daftarkan NIK anak Anda kepada operator data sekolah setempat agar status miskin/kurang mampu dimasukkan dalam prioritas penerima PIP (Program Indonesia Pintar).
+3. **Adukan Pemeras Pungli:** Laporkan oknum pemeras administrasi sipil di desa ke Unit Pemberantasan Pungli (UPP) Saber Pungli Provinsi ${formData.provinsi} guna ditindaklanjuti secara hukum adat dan nasional.`;
+
+      } else if (selectedGroup.id === 'target-difabel' || lower.includes('difabel') || lower.includes('cacat') || lower.includes('disabilitas') || lower.includes('slb')) {
+        fallbackText = `👨‍🦽 **Kesetaraan & Advokasi Hak Penyandang Disabilitas buat ${formData.nama} (${formData.provinsi}):**
+
+Hukum Indonesia menjamin pemenuhan hak-hak penyandang disabilitas secara utuh berdasarkan UU No 8 Tahun 2016.
+
+**Analisis Masalah Hak Disabilitas:**
+1. **Kuota Pekerjaan:** Setiap instansi pemerintah (BUMN/BUMD) wajib menyediakan kuota minimal **2%**, sedangkan sektor swasta wajib hukumnya menyediakan minimal **1%** untuk tenaga kerja disabilitas berkeahlian.
+2. **Bantuan Alat Fisik Gratis:** Dinas Sosial mengalokasikan bantuan kursi roda, kaki palsu, alat bantu dengar, dan braille dari APBD daerah setiap tahunnya.
+
+**Langkah Nyata Hari Ini:**
+1. **Buat Surat Keterangan Disabilitas:** Minta surat resmi keterangan ragam disabilitas (fisik, intelektual, mental, atau sensorik) dari dokter Puskesmas.
+2. **Ajukan Pengusulan Alat Bantu ke Dinsos:** Kirimkan surat usulan alat bantu ke Dinas Sosial Kabupaten/Kota di ${formData.provinsi} yang dilampiri foto fisik pemohon guna dimasukkan ke prioritas pagu anggaran pembagian APBD dinten ini.
+3. **Konsultasikan Sekolah Luar Biasa (SLB):** Hubungi balai Dinas Pendidikan kagem mengakses beasiswa sekolah inklusi atau SLB negeri gratis tanpa hambatan biaya masuk.`;
+
+      } else if (selectedGroup.id === 'target-pkl' || lower.includes('pkl') || lower.includes('dagang') || lower.includes('warung') || lower.includes('halal') || lower.includes('satpol')) {
+        fallbackText = `🍢 **Perlindungan Hukum Pedagang Kaki Lima & Warung Kecil buat ${formData.nama} (${formData.provinsi}):**
+
+Aktivitas wirausaha mandiri Anda dilindungi undang-undang sebagai penggerak ekonomi mikro rakyat.
+
+**Analisis Legal PKL & UMKM:**
+1. **Pendaftaran NIB Gratis:** Surat Izin Usaha sekarang disatukan dalam NIB (Nomor Induk Berusaha) yang bisa diakses instan dan gratis melalui HP. NIB ini adalah pelindung dari penertiban liar sekaligus syarat legalitas pengajuan KUR bank.
+2. **Sertifikat Halal Gratis (SEHATI):** Produk makanan rumahan/warung Anda berhak memperoleh sertifikat halal gratis melalui pendaftaran mekanisme mandiri online (Self-Declare).
+3. **Penertiban Satpol PP:** Kebijakan relokasi wajib diiringi dengan sosialisasi tertulis 3 kali, musyawarah bersama kagem kompensasi pemindahan area, serta penyediaan tempat penampungan dagang baru yang layak.
+
+**Langkah Nyata Hari Ini:**
+1. **Urus NIB lewat HP:** Buka portal resmi \`oss.go.id\` dengan mendaftarkan nomor WhatsApp aktif. Isikan deskripsi lapak produk makanan/minuman Anda kagem unduh NIB ber-barcode gratis dinten ini.
+2. **Daftarkan QRIS Usaha Gratis:** Tunjukkan NIB ke Bank terdekat di ${formData.provinsi} kagem mengaktifkan QRIS Merchant atas nama warung Anda sendiri guna menghindari transaksi tunai kembalian sisa uang receh.
+3. **Minta Negosiasi Kelompok:** Jika ada isu penertiban, gabungkan para pedagang dalam Paguyuban PKL kagem melayangkan surat keberatan resmi kepada Wali Kota / Bupati meminta mediasi lokasi dagang baru yang produktif.`;
+
       } else {
-        fallbackText = `🇮🇩 **Tuntunan Aduan Sipil Terpadu untuk ${formData.nama} (${formData.provinsi}):**\n\nTerima kasih atas aduan tepercaya yang Anda sampaikan mengenai: "${formData.masalah}".\n\n**Rekomendasi Tindakan Sipil:**\n1. **Kumpulkan Bukti:** Persiapkan kronologi tertulis, saksi, dokumen tertulis, foto, atau kuitansi yang mendukung aduan ini.\n2. **Hindari Pungli:** Jangan membayarkan denda atau biaya administrasi tidak resmi kepada calo/pihak luar sipil.\n3. **Konsultasi Legal:** Silakan ajukan berkas lengkap ke perwakilan Lembaga Bantuan Hukum (LBH) terdekat di Provinsi ${formData.provinsi} untuk mendapat konsultasi serta pendampingan gratis.`;
+        fallbackText = `🇮🇩 **Tuntunan Aduan Sipil Terpadu untuk ${formData.nama} (${formData.provinsi}):**
+
+Terima kasih atas aduan tepercaya yang Anda sampaikan mengenai: "${formData.masalah}".
+
+**Rekomendasi Tindakan Sipil:**
+1. **Kumpulkan Bukti:** Persiapkan kronologi tertulis, saksi, dokumen tertulis, foto, atau kuitansi yang mendukung aduan ini.
+2. **Hindari Pungli:** Jangan membayarkan denda atau biaya administrasi tidak resmi kepada calo/pihak luar sipil.
+3. **Konsultasi Legal:** Silakan ajukan berkas lengkap ke perwakilan Lembaga Bantuan Hukum (LBH) terdekat di Provinsi ${formData.provinsi} untuk mendapat konsultasi serta pendampingan gratis.`;
       }
       setAiResponse(fallbackText);
     } finally {

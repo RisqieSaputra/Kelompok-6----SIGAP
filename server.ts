@@ -149,15 +149,138 @@ function getSmartFallbackResponse(query: string, topicId?: string): string {
     indo: {
       langName: "Bahasa Indonesia",
       greeting: "Halo sahabat warga! Saya SIGAP, AI pendamping setiamu mendampingi masalah hukum, medis, dan birokrasi.",
-      emergency: `⚠️ **PERINGATAN KESELAMATAN DARURAT MEDIS (SIGAP SIAGA):**\n\nGejala dada kiri terasa sesak menjalar ke pundak merupakan serangan jantung darurat! \n\n📞 **Segera telepon Ambulans 112 (Gratis)** atau segera ke Instalasi Gawat Darurat (IGD) Rumah Sakit terdekat hari ini! Jangan menyetir sendirian.\n\n**Langkah Darurat:** Sandarkan penderita setengah duduk (posisi 45 derajat) agar dada mengembang lega. Jangan biarkan berdiri!`,
-      tani: `🌾 **Program Gagal Panen Sawah Banjir:**\n\nBagi petani yang sawahnya terendam banjir dan memiliki asuransi AUTP, kamu berhak mengklaim ganti rugi sebesar **Rp 6.000.000,-** per Hektar jika kerusakan mencapai 75%.\n\n**Langkah Hari Ini:** Foto kerusakan sawah dari beberapa sisi untuk bukti otentik, lalu temui Penyuluh Pertanian Lapangan (PPL) di balai desa terdekat untuk mengurus bantuan bibit pengganti gratis!`,
-      phk: `✊ **Bela Hak Sipil - PHK Sepihak Pabrik:**\n\nKamu berhak menolak pesangon yang melanggar hukum! Hak buruh dilindungi UU Cipta Kerja No 6 Tahun 2023 Pasal 156. Kerja 5 tahun berhak atas pesangon resmi minimal 6 bulan upah + 2 bulan uang penghargaan (UPMK).\n\n**Langkah Hari Ini:** JANGAN menandatangani surat resign mandiri (pengunduran diri) jika dipaksa HRD, amankan slip gaji lama dan surat kontrak kerja asli hari ini!`,
-      tanah: `🏘️ **Hukum Sengketa Tanah Warisan & Lahan:**\n\nSertifikat Hak Milik (SHM) yang tercatat di BPN merupakan bukti terkuat kepemilikan. Menurut Hukum Perdata Pasal 1321, pengalihan hak akibat paksaan atau intimidasi dinyatakan batal demi hukum!\n\n**Langkah Hari Ini:** Pasang tiang patok batas atau pagar fisik dan plang bertuliskan hak waris keluarga di lahan hari ini. Kunjungi LBH setempat untuk bantuan hukum pengacara gratis.`,
-      bpjs: `🩺 **BPJS Kesehatan & Layanan Medis Sipil:**\n\nBPJS Kesehatan mati nunggak dapat diaktifkan kembali lewat program mencicil bertahap **REHAB** di aplikasi Mobile JKN, atau hubungi WA **PANDUWA BPJS (08118165165)**.\n\n**Langkah Hari Ini:** IGD Rumah Sakit dilarang menolak jika darurat medis, mereka wajib membantumu hari ini tanpa surat rujukan! Jika miskin, ajukan kartu PBI gratis di kelurahan hari ini.`,
-      modal: `💰 **KUR Modal Usaha UMKM Mikro:**\n\nPinjaman KUR Mikro di bawah Rp 50 Juta dilarang menyaratkan agunan jaminan tambahan sertifikat. Jaminan pokoknya cukup kelayakan usaha jualanmu yang aktif minimal 6 bulan berturut-turut.\n\n**Langkah Hari Ini:** Daftarkan Nomor Induk Berusaha (**NIB**) gratis online dari HP di portal \`oss.go.id\` hari ini, lalu temui petugas bank BRI/Mandiri membawa fotokopi KTP dan KK.`,
-      tilang: `⚖️ **Ulasan Surat Tilang Elektronik ETLE:**\n\nBatas sanggah konfirmasi tilang ETLE resmi adalah **8 hari**. Cek foto bukti pelanggaran resmi di situs ETLE kepolisian daerah.\n\n**Langkah Hari Ini:** Lakukan sanggah/blokir online jika mobil/motor bekas sudah dijual. Pembayaran denda resmi hanya transfer via kode BRIVA, **jangan bayar tunai ke polisi!**`,
-      curhat: `❤️ **Sesi Curhat & Sahabat Jiwa (SIGAP Melindungi):**\n\nHalo teman, ambil napas mendalam dulu ya, lalu hembuskan perlahan... 🤗 Saya mendengar bebanmu. Kamu sudah berjuang sangat hebat sejauh ini melewati semua badai hidup. Kamu tidak sendirian.\n\n**Langkah Hari Ini:** Ceritakan hal paling berat yang mengganjal hatimu hari ini di kolom chat, mari kita urai perlahan-lahan bersama SIGAP. Jika judheg, hubungi **Hotline Kemenkes 119 Ext. 8** gratis.`,
-      general: `🇮🇩 **SIGAP Pendamping Warga (Bahasa Indonesia):**\n\nSaya siap mendampingimu menyelesaikan berbagai urusan dan masalah sipil hari ini tanpa calo.\n\nKamu bisa bertanya tentang:\n- 🩺 **BPJS & Jaminan Kesehatan**\n- 🏘️ **Sengketa Tanah & Lahan Waris**\n- ✊ **Hak Ketenagakerjaan & PHK Sepihak**\n- 🌾 **Asuransi Tani & Sawah Rendam Banjir**\n- 💰 **Kredit KUR Modal Usaha UMKM**\n- ⚖️ **Ulasan Surat Tilang ETLE**\n- ❤️ **Ruang Aman Curhat & Keluh Kesah**\n\n**Langkah hari ini:** Silakan ketik pertanyaan atau keluhan spesifikmu secara langsung di sini secara santai, atau unggah dokumen terkait untuk saya telaah!`
+      emergency: `⚠️ **PERINGATAN KESELAMATAN DARURAT MEDIS (SIGAP SIAGA):**
+
+Gejala dada kiri terasa sesak menjalar ke pundak merupakan serangan jantung darurat! 
+
+📞 **Segera telepon Ambulans 112 (Gratis)** atau segera ke Instalasi Gawat Darurat (IGD) Rumah Sakit terdekat hari ini! Jangan menyetir sendirian.
+
+**Langkah Darurat:** Sandarkan penderita setengah duduk (posisi 45 derajat) agar dada mengembang lega. Jangan biarkan berdiri!`,
+      tani: `🌾 **Program Gagal Panen Sawah Banjir:**
+
+Bagi petani yang sawahnya terendam banjir dan memiliki asuransi AUTP, kamu berhak mengklaim ganti rugi sebesar **Rp 6.000.000,-** per Hektar jika kerusakan mencapai 75%.
+
+**Langkah Hari Ini:** Foto kerusakan sawah dari beberapa sisi untuk bukti otentik, lalu temui Penyuluh Pertanian Lapangan (PPL) di balai desa terdekat untuk mengurus bantuan bibit pengganti gratis!`,
+      phk: `✊ **Bela Hak Sipil - PHK Sepihak Pabrik:**
+
+Kamu berhak menolak pesangon yang melanggar hukum! Hak buruh dilindungi UU Cipta Kerja No 6 Tahun 2023 Pasal 156. Kerja 5 tahun berhak atas pesangon resmi minimal 6 bulan upah + 2 bulan uang penghargaan (UPMK).
+
+**Langkah Hari Ini:** JANGAN menandatangani surat resign mandiri (pengunduran diri) jika dipaksa HRD, amankan slip gaji lama dan surat kontrak kerja asli hari ini!`,
+      tanah: `🏘️ **Hukum Sengketa Tanah Warisan & Lahan:**
+
+Sertifikat Hak Milik (SHM) yang tercatat di BPN merupakan bukti terkuat kepemilikan. Menurut Hukum Perdata Pasal 1321, pengalihan hak akibat paksaan atau intimidasi dinyatakan batal demi hukum!
+
+**Langkah Hari Ini:** Pasang tiang patok batas atau pagar fisik dan plang bertuliskan hak waris keluarga di lahan hari ini. Kunjungi LBH setempat untuk bantuan hukum pengacara gratis.`,
+      bpjs: `🩺 **BPJS Kesehatan & Layanan Medis Sipil:**
+
+BPJS Kesehatan mati nunggak dapat diaktifkan kembali lewat program mencicil bertahap **REHAB** di aplikasi Mobile JKN, atau hubungi WA **PANDUWA BPJS (08118165165)**.
+
+**Langkah Hari Ini:** IGD Rumah Sakit dilarang menolak jika darurat medis, mereka wajib membantumu hari ini tanpa surat rujukan! Jika miskin, ajukan kartu PBI gratis di kelurahan hari ini.`,
+      modal: `💰 **KUR Modal Usaha UMKM Mikro:**
+
+Pinjaman KUR Mikro di bawah Rp 50 Juta dilarang menyaratkan agunan jaminan tambahan sertifikat. Jaminan pokoknya cukup kelayakan usaha jualanmu yang aktif minimal 6 bulan berturut-turut.
+
+**Langkah Hari Ini:** Daftarkan Nomor Induk Berusaha (**NIB**) gratis online dari HP di portal \`oss.go.id\` hari ini, lalu temui petugas bank BRI/Mandiri membawa fotokopi KTP dan KK.`,
+      tilang: `⚖️ **Ulasan Surat Tilang Elektronik ETLE:**
+
+Batas sanggah konfirmasi tilang ETLE resmi adalah **8 hari**. Cek foto bukti pelanggaran resmi di situs ETLE kepolisian daerah.
+
+**Langkah Hari Ini:** Lakukan sanggah/blokir online jika mobil/motor bekas sudah dijual. Pembayaran denda resmi hanya transfer via kode BRIVA, **jangan bayar tunai ke polisi!**`,
+      curhat: `❤️ **Sesi Curhat & Sahabat Jiwa (SIGAP Melindungi):**
+
+Halo teman, ambil napas mendalam dulu ya, lalu hembuskan perlahan... 🤗 Saya mendengar bebanmu. Kamu sudah berjuang sangat hebat sejauh ini melewati semua badai hidup. Kamu tidak sendirian.
+
+**Langkah Hari Ini:** Ceritakan hal paling berat yang mengganjal hatimu hari ini di kolom chat, mari kita urai perlahan-lapan bersama SIGAP. Jika judheg, hubungi **Hotline Kemenkes 119 Ext. 8** gratis.`,
+      target_irt: `👩‍🦰 **Perlindungan Sipil Ibu Rumah Tangga - Advokasi Bansos, BPJS, & Penipuan Online (SIGAP):**
+
+Ibu Rumah Tangga memegang peran kemandirian keluarga. Berikut solusi taktis dari SIGAP untuk masalah Anda:
+
+**Kajian Regulasi & Solusi:**
+1. **Bansos (PKH/BPNT) Terhambat:** Pastikan NIK Anda terdaftar aktif di DTKS Kemensos. Jika dinonaktifkan, kelurahan wajib mengusulkan ulang lewat musyawarah desa terpadu.
+2. **Re-aktivasi BPJS Kesehatan:** Jika menunggak iuran mandiri, daftarkan program cicilan **REHAB** melalui Mobile JKN agar kartu segera aktif kembali untuk pengobatan.
+3. **Penipuan Arisan/Belanja Online:** Laporkan nomor rekening penipu secara online ke portal \`cekrekening.id\` kepolisian dan adukan ke bank pengirim kagem membekukan saldo rekening pelaku.
+
+**Langkah Hari Ini:** Unduh program "Cek Bansos" resmi Kemensos dari HP kagem melacak status bantuan mandiri Anda, atau hubungi faskes kagem pelayanan darurat tanpa DP!`,
+      target_tani: `🌾 **Pemberdayaan Petani & Nelayan - Solusi Klaim AUTP & Subsidi Solar (SIGAP):**
+
+Negara menjamin perlindungan atas kegagalan panen dan aktivitas perikanan.
+
+**Kajian Regulasi & Solusi:**
+1. **Asuransi AUTP (Tani Padi):** Bagi sawah terdaftar AUTP, Anda berhak menerima ganti rugi resmi senilai **Rp 6.000.000,- per Hektar** dari pemerintah jika terendam banjir/kekeringan puso dengan tingkat kerusakan di atas 75%.
+2. **e-RDKK Pupuk Bersubsidi:** Pastikan keanggotaan Kelompok Tani terdata dalam e-RDKK Dinas Pertanian kagem memperoleh alokasi pupuk resmi.
+3. **Solar Bersubsidi Nelayan:** Daftarkan Kartu KUSUKA (Kartu Pelaku Usaha Kelautan & Perikanan) kagem membeli solar subsidi di SPBUN tanpa pungli tambahan.
+
+**Langkah Hari Ini:** Ambil foto/video kerusakan sawah dari berbagai sisi, lalu segera temui Penyuluh Pertanian Lapangan (PPL) daerah setempat di Balai Desa kagem menerbitkan Surat Lahan Puso asuransi!`,
+      target_buruh: `✊ **Rekomendasi Advokasi Buruh Pabrik & Ketenagakerjaan (SIGAP):**
+
+Berdasarkan UU Cipta Kerja No 6 Tahun 2023 Pasal 156, PHK sepihak tanpa adanya SP bertahap melanggar hukum dan Anda berhak menolak draf pesangon sepihak yang tidak sesuai.
+
+**Kajian Regulasi & Solusi:**
+1. **Uang Pesangon:** Masa kerja 5 tahun berhak atas pesangon resmi 6 bulan upah standar + 2 bulan Uang Penghargaan Masa Kerja (UPMK).
+2. **Lembur & Upah Wajib:** Setiap kelebihan jam kerja wajib dihitung sebagai pengali lembur resmi Disnaker.
+
+**Langkah Hari Ini:** JANGAN menandatangani surat pengunduran diri sukarela (resign) dari HRD jika Anda dipaksa/diintimidasi. Amankan slip gaji lama dan draf kontrak asli, lalu layangkan surat permohonan bipartit resmi 7 hari kagem mediasi!`,
+      target_migran: `🧳 **Advokasi Perlindungan Pekerja Migran Indonesia (PMI) Resmi (SIGAP):**
+
+Hak asasi Pekerja Migran dilindungi sepenuhnya oleh UU No 18 Tahun 2017 tentang Perlindungan PMI.
+
+**Kajian Regulasi & Solusi:**
+1. **Penahanan Paspor:** Paspor adalah dokumen milik negara, dilarang keras ditahan secara sepihak oleh majikan atau agen penyalur.
+2. **Hotline Perlindungan:** Pastikan keberangkatan melalui jalur legal BP2MI agar hak asuransi kerja terjamin.
+
+**Langkah Hari Ini:** Hubungi nomor hotline darurat KBRI di negara penempatan, atau hubungi BP2MI dalam negeri di nomor bebas pulsa **0800-1000-50** untuk penanganan agen nakal yang memeras dokumen Anda!`,
+      target_lansia: `👵 **Layanan Perlindungan Mandiri Lansia - Fasilitas Medis & Pensiun Taspen (SIGAP):**
+
+Para lanjut usia berhak menikmati birokrasi yang priyayi bebas hambatan berat.
+
+**Kajian Regulasi & Solusi:**
+1. **Otentikasi Taspen/Pensiun:** Gunakan aplikasi Taspen Otentikasi lewat HP anak/saudara kagem pencairan gaji berkala, sehingga sepuh tidak perlu datang langsung mendesak.
+2. **BPJS PRB (Program Rujuk Balik):** Lansia dengan komorbiditas (gula/tensi) berhak mendapatkan obat bulanan gratis langsung di apotek terdekat tanpa harus mondar-mandir meminta rujukan berkala dari dokter spesialis RS.
+
+**Langkah Hari Ini:** Daftarkan kartu lansia prasejahtera di Dinas Sosial setempat, dan saat kontrol berikutnya minta resep PRB BPJS di Puskesmas untuk mempermudah rutinitas kesehatan sepuh!`,
+      target_3t: `⛵ **Akses Administrasi Kependudukan & Darurat Medis Wilayah Desa 3T (SIGAP):**
+
+Penduduk kawasan perbatasan, kepulauan, dan pedalaman mendapat jaminan kesetaraan sipil.
+
+**Kajian Regulasi & Solusi:**
+1. **Adminduk Gratis:** Pembuatan KTP, KK, Akta Kelahiran dan silsilah waris adalah **100% GRATIS** bebas pungli/calo.
+2. **Dana PIP/KIP Sekolah:** Operator sekolah wajib mendaftarkan NIK siswa kurang mampu kagem beasiswa Program Indonesia Pintar.
+3. **Darurat Bisa Ular:** Balut imobilisasi dengan bidai kayu saged dinten ini (jangan diikat terlalu kencang), segera evakuasi ke Puskesmas penyedia Serum Anti Bisa Ular (SABU) gratis.
+
+**Langkah Hari Ini:** Daftarkan KK KTP kolektif digital melalui aplikasi Identitas Kependudukan Digital (IKD) di balai desa, dan laporkan oknum pemeras adminduk langsung ke Unit Saber Pungli!`,
+      target_difabel: `👨‍🦽 **Kesetaraan & Advokasi Hak Penyandang Disabilitas (SIGAP):**
+
+Kelompok disabilitas berhak atas kesetaraan sosial dan aksesibilitas penuh yang dijamin oleh UU No 8 Tahun 2016.
+
+**Kajian Regulasi & Solusi:**
+1. **Kuota Lowongan Pekerjaan:** Sesuai UU No 8/2016, instansi pemerintah (BUMN) wajib mengalokasikan kuota minimal **2%** disabilitas, dan swasta minimal **1%**.
+2. **Alat Bantu Gratis:** Setiap tahun Dinas Sosial menganggarkan pembagian kursi roda, alat dengar, dan braille gratis dari pagu APBD.
+
+**Langkah Hari Ini:** Minta Surat Keterangan Ragam Disabilitas dari Puskesmas, lalu serahkan proposal usulan bantuan alat bantu fisik ke Dinas Sosial kabupaten/kota kagem jaminan alokasi gratis!`,
+      target_pkl: `🍢 **Perlindungan Hukum Pedagang Kaki Lima & Warung UMKM (SIGAP):**
+
+Wirausaha kecil adalah pondasi ekonomi rakyat Indonesia yang mandiri.
+
+**Kajian Regulasi & Solusi:**
+1. **NIB & QRIS Usaha Gratis:** Urus NIB (Nomor Induk Berusaha) instan dan gratis di portal \`oss.go.id\` kagem prasyarat KUR modal bank tanpa jaminan formal.
+2. **Sertifikat Halal SEHATI:** Ajukan bebas kuota halal gratis kementrian agama murni online.
+3. **Konflik Relokasi Satpol PP:** PKL berhak menuntut perundingan, sosialisasi tertulis 3 kali, dan penempatan lapak ekonomi baru sebelum pembongkaran fisik dilakukan Satpol PP.
+
+**Langkah Hari Ini:** Masuk ke portal \`oss.go.id\` via HP untuk mengunduh legalitas NIB warung Anda dinten ini juga kagem mempermudah pembukaan QRIS merchant resmi!`,
+      general: `🇮🇩 **SIGAP Pendamping Warga (Bahasa Indonesia):**
+
+Saya siap mendampingimu menyelesaikan berbagai urusan dan masalah sipil hari ini tanpa calo.
+
+Kamu bisa bertanya tentang:
+- 🩺 **BPJS & Jaminan Kesehatan**
+- 🏘️ **Sengketa Tanah & Lahan Waris**
+- ✊ **Hak Ketenagakerjaan & PHK Sepihak**
+- 🌾 **Asuransi Tani & Sawah Rendam Banjir**
+- 💰 **Kredit KUR Modal Usaha UMKM**
+- ⚖️ **Ulasan Surat Tilang ETLE**
+- ❤️ **Ruang Aman Curhat & Keluh Kesah**
+
+**Langkah hari ini:** Silakan ketik pertanyaan atau keluhan spesifikmu secara langsung di sini secara santai, atau unggah dokumen terkait untuk saya telaah!`
     }
   };
 
@@ -178,6 +301,14 @@ function getSmartFallbackResponse(query: string, topicId?: string): string {
     else if (finalTopicId === 'papua') { lKey = "papua"; tKey = "bpjs"; }
     else if (finalTopicId === 'kur-umkm') { lKey = "indo"; tKey = "modal"; }
     else if (finalTopicId === 'curhat') { lKey = "indo"; tKey = "curhat"; }
+    else if (finalTopicId === 'target-irt') { lKey = "indo"; tKey = "target_irt"; }
+    else if (finalTopicId === 'target-tani') { lKey = "indo"; tKey = "target_tani"; }
+    else if (finalTopicId === 'target-buruh') { lKey = "indo"; tKey = "target_buruh"; }
+    else if (finalTopicId === 'target-migran') { lKey = "indo"; tKey = "target_migran"; }
+    else if (finalTopicId === 'target-lansia') { lKey = "indo"; tKey = "target_lansia"; }
+    else if (finalTopicId === 'target-3t') { lKey = "indo"; tKey = "target_3t"; }
+    else if (finalTopicId === 'target-difabel') { lKey = "indo"; tKey = "target_difabel"; }
+    else if (finalTopicId === 'target-pkl') { lKey = "indo"; tKey = "target_pkl"; }
     else if (finalTopicId === 'skck') {
       const dial = DICT.indo;
       return `⚖️ **[SIGAP AI - Deteksi Bahasa: Bahasa Indonesia]**\n\n` +
